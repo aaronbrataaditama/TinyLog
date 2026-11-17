@@ -13,6 +13,10 @@
   Windows 10 / 11 &nbsp;·&nbsp; one portable <code>.exe</code> (~0.5 MB) &nbsp;·&nbsp; no installer &nbsp;·&nbsp; no account &nbsp;·&nbsp; no network
 </p>
 
+<p align="center">
+  <a href="https://github.com/aaronbrataaditama/TinyLog/releases/latest"><b>⬇ Download the latest release</b></a>
+</p>
+
 ---
 
 ## Why TinyLog?
@@ -57,18 +61,24 @@ That's the whole app.
 
 ## Quick start
 
-There's no prebuilt download yet, so you build it once:
-
-1. Install **Visual Studio** with the *Desktop development with C++* workload (MSVC x64 + Windows SDK).
-2. From the repo folder run:
-
-   ```
-   tools\build.cmd release
-   ```
-
-3. Copy `build\release\TinyLog.exe` to any folder you can write to, and double-click it.
-4. Look for the stump in the tray. Windows 11 tucks new icons under the `^` arrow, so drag it onto the taskbar, or
+1. Download `TinyLog-v1.0.0-win-x64.zip` (or just `TinyLog.exe`) from the
+   [latest release](https://github.com/aaronbrataaditama/TinyLog/releases/latest) and unzip it into any folder
+   you can write to. The release also lists a SHA-256 checksum if you want to verify the download.
+2. Double-click `TinyLog.exe`. Windows SmartScreen may warn the first time because the exe isn't code-signed;
+   choose *More info → Run anyway*.
+3. Look for the stump in the tray. Windows 11 tucks new icons under the `^` arrow, so drag it onto the taskbar, or
    go to **Settings → Personalization → Taskbar → Other system tray icons** and turn on **TinyLog**.
+
+### Build it yourself
+
+Prefer to build from source? Install **Visual Studio** with the *Desktop development with C++* workload
+(MSVC x64 + Windows SDK), then from the repo folder run:
+
+```
+tools\build.cmd release
+```
+
+The exe lands in `build\release\TinyLog.exe`.
 
 ## Using it
 
