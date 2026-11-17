@@ -25,7 +25,8 @@ add_compile_options($<$<COMPILE_LANGUAGE:CXX>:/W4> $<$<COMPILE_LANGUAGE:CXX>:/WX
 
 # Release: size-first (Spec 2.3). External PDB, never shipped.
 set(CMAKE_CXX_FLAGS_RELEASE "/O1 /Gy /Gw /GL /Zi /DNDEBUG")
-set(CMAKE_EXE_LINKER_FLAGS_RELEASE "/LTCG /OPT:REF /OPT:ICF /INCREMENTAL:NO /DEBUG")
+# /PDBALTPATH:%_PDB% embeds only the PDB file name, not the local build directory, in the exe.
+set(CMAKE_EXE_LINKER_FLAGS_RELEASE "/LTCG /OPT:REF /OPT:ICF /INCREMENTAL:NO /DEBUG /PDBALTPATH:%_PDB%")
 set(CMAKE_STATIC_LINKER_FLAGS_RELEASE "/LTCG")
 
 set(SRC ${CMAKE_SOURCE_DIR}/src)
