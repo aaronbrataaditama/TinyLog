@@ -130,6 +130,10 @@ for the full spec and [`.claude/plans/implementation-plan.md`](.claude/plans/imp
 - **Unsigned exe:** Windows SmartScreen may warn the first time you run a copy that came from a download or
   network share. Choose *More info → Run anyway*.
 
+## License
+
+[MIT](LICENSE). Free to use, change and share.
+
 ## Developing
 
 ```
