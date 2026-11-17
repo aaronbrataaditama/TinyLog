@@ -130,6 +130,15 @@ for the full spec and [`.claude/plans/implementation-plan.md`](.claude/plans/imp
 - **Unsigned exe:** Windows SmartScreen may warn the first time you run a copy that came from a download or
   network share. Choose *More info → Run anyway*.
 
+## Versioning
+
+TinyLog follows [Semantic Versioning](https://semver.org/). The current version is **1.0.0**: right-click
+`TinyLog.exe` → **Properties → Details** to see it. Changes are listed in [CHANGELOG.md](CHANGELOG.md).
+
+The version lives in one place, the `project(TinyLog VERSION x.y.z ...)` line of `CMakeLists.txt`, and is stamped
+into the exe automatically. To cut a release: bump it there, add an entry to `CHANGELOG.md`, commit, and tag
+`vX.Y.Z`.
+
 ## License
 
 [MIT](LICENSE). Free to use, change and share.

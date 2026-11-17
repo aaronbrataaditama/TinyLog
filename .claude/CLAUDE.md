@@ -21,9 +21,15 @@ interactive controls: notes box, Start/Stop, Export to Excel. Data lives beside 
 - Release EXE must be < 3,000,000 bytes (`tools/check-size.ps1`); `tools/audit.ps1` must pass.
 - Run the app from a copy in `%TEMP%\TinyLogRun\`, never from the repo (it writes data beside the EXE).
 
+## Versioning
+- Semantic Versioning. Single source of truth: `project(TinyLog VERSION x.y.z)` in `CMakeLists.txt`; CMake generates
+  `version.h` and the manifest from `resources/version.h.in` / `resources/app.manifest.in`. Never hard-code a version.
+- Release = bump `VERSION`, add a `CHANGELOG.md` entry, commit, tag `vX.Y.Z`.
+
 ## Git
-- Integration branch: `feat/tinylog-v1`. WP branches: `wp/<id>-<slug>` (worktrees), merged `--no-ff`.
-- Never commit to `main`/`master`. No remote exists; never push unless the user asks.
+- Public repo: `origin` = github.com/aaronbrataaditama/TinyLog, branch `main`. The owner pushes; never push unless asked.
+- Commits meant for the public repo must use the GitHub noreply identity
+  (`aaronbrataaditama@users.noreply.github.com`), never a work email or real name.
 
 ## Code rules (all contributors, incl. WP agents)
 - Edit only files your WP owns (see plan's ownership table). Never edit frozen contract headers,

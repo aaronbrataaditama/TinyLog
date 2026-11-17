@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.25)
 project(TinyLog VERSION 1.0.0 LANGUAGES CXX RC)
 
 # Ownership: Wave 0 (orchestrator). WP agents must not edit this file.
+#
+# VERSIONING: the single source of truth is the VERSION in the project() line above (MAJOR.MINOR.PATCH).
+# It is stamped into the exe (version resource + manifest) via the generated files below.
+# To release: bump it here, update CHANGELOG.md, commit, tag vX.Y.Z.
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -25,6 +29,11 @@ set(CMAKE_EXE_LINKER_FLAGS_RELEASE "/LTCG /OPT:REF /OPT:ICF /INCREMENTAL:NO /DEB
 set(CMAKE_STATIC_LINKER_FLAGS_RELEASE "/LTCG")
 
 set(SRC ${CMAKE_SOURCE_DIR}/src)
+
+# Generated version header + manifest (found by the resource compiler via the include path).
+set(GENERATED_DIR ${CMAKE_BINARY_DIR}/generated)
+configure_file(resources/version.h.in ${GENERATED_DIR}/version.h @ONLY)
+configure_file(resources/app.manifest.in ${GENERATED_DIR}/app.manifest @ONLY)
 
 # ---- core: testable, no windows of its own -------------------------------
 add_library(tinylog_core STATIC
@@ -65,6 +74,7 @@ add_executable(TinyLog WIN32
   src/app/App.cpp
   resources/TinyLog.rc
 )
+target_include_directories(TinyLog PRIVATE ${GENERATED_DIR})
 target_link_libraries(TinyLog PRIVATE tinylog_ui tinylog_core)
 target_link_options(TinyLog PRIVATE /MANIFEST:NO)
 add_custom_command(TARGET TinyLog POST_BUILD
@@ -98,9 +108,10 @@ add_executable(BubbleDemo WIN32
   demo/BubbleDemo.cpp
   resources/TinyLog.rc
 )
+target_include_directories(BubbleDemo PRIVATE ${GENERATED_DIR})
 target_link_libraries(BubbleDemo PRIVATE tinylog_ui tinylog_core)
 target_link_options(BubbleDemo PRIVATE /MANIFEST:NO)
 
 # The resource compiler's dependency scan misses icons/manifest; rebuild the .res when they change.
 set_source_files_properties(resources/TinyLog.rc PROPERTIES OBJECT_DEPENDS
-  "${CMAKE_SOURCE_DIR}/resources/idle.ico;${CMAKE_SOURCE_DIR}/resources/recording.ico;${CMAKE_SOURCE_DIR}/resources/app.manifest")
+  "${CMAKE_SOURCE_DIR}/resources/idle.ico;${CMAKE_SOURCE_DIR}/resources/recording.ico;${GENERATED_DIR}/app.manifest;${GENERATED_DIR}/version.h")
