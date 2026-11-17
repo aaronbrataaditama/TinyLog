@@ -1,0 +1,9 @@
+build/
+out/
+.vs/
+*.user
+TinyLog.jsonl
+TinyLog.state*
+TinyLog.probe
+.claude/settings.local.json
+.claude/worktrees/
