@@ -7,3 +7,27 @@ TinyLog.state*
 TinyLog.probe
 .claude/settings.local.json
 .claude/worktrees/
+
+# Secrets and credentials — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+*.jks
+*.keystore
+*.snk
+*.ppk
+*.kdbx
+id_rsa*
+id_ed25519*
+.netrc
+.npmrc
+secrets.*
+credentials*
+
+# Local/debug artifacts (PDBs embed local build paths)
+*.pdb
+*.log
